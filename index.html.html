@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PASARKURMA | Toko Grosir & Distributor Kurma di Jogja</title>
+    
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RY33XK99YQ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-RY33XK99YQ');
+      
+      // Check if user accepted cookies
+      if (localStorage.getItem('cookieConsent') === 'accepted') {
+          gtag('config', 'G-RY33XK99YQ', {
+              'anonymize_ip': true
+          });
+      }
     </script>
-  <style>
+    
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* Header & Navigation */
         .header {
             background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
             position: sticky;
@@ -49,9 +56,6 @@
             font-size: 1.8rem;
             font-weight: bold;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .nav-menu {
@@ -94,7 +98,6 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f4e5d3" width="1200" height="600"/><circle cx="200" cy="150" r="80" fill="%23d2691e" opacity="0.1"/><circle cx="900" cy="400" r="120" fill="%238b4513" opacity="0.1"/></svg>');
@@ -159,7 +162,6 @@
             color: #D2691E;
         }
 
-        /* Featured Products Section */
         .section {
             padding: 4rem 2rem;
             max-width: 1200px;
@@ -186,7 +188,6 @@
             background: linear-gradient(90deg, transparent, #D2691E, transparent);
         }
 
-        /* Product Categories */
         .categories {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -244,7 +245,6 @@
             font-size: 0.9rem;
         }
 
-        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -257,7 +257,6 @@
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            animation: fadeIn 0.6s ease;
         }
 
         .product-card:hover {
@@ -304,7 +303,6 @@
             border-radius: 5px;
         }
 
-        /* Features Section */
         .features {
             background: linear-gradient(135deg, #f4e5d3 0%, #fff 100%);
             padding: 4rem 2rem;
@@ -347,7 +345,6 @@
             font-size: 0.9rem;
         }
 
-        /* Footer */
         .footer {
             background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
             color: white;
@@ -386,7 +383,6 @@
             border-top: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -395,15 +391,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
             }
         }
 
@@ -416,28 +403,22 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
             }
-
             .mobile-toggle {
                 display: block;
             }
-
             .hero h1 {
                 font-size: 2rem;
             }
-
             .hero p {
                 font-size: 1rem;
             }
-
             .section-title {
                 font-size: 1.8rem;
             }
-
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 1rem;
@@ -446,34 +427,31 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <nav class="nav-container">
-            <a href="#" class="logo">🌴 PASARKURMA</a>
+            <a href="index.html" class="logo">🌴 PASARKURMA</a>
             <div class="mobile-toggle">☰</div>
             <ul class="nav-menu">
                 <li><a href="#produk">Produk</a></li>
-                <li><a href="#harga">Daftar Harga</a></li>
-                <li><a href="#peluang">Peluang Usaha</a></li>
+                <li><a href="harga-kurma.html">Daftar Harga</a></li>
+                <li><a href="blog.html">Blog</a></li>
                 <li><a href="#about">Tentang Kami</a></li>
                 <li><a href="#kontak">Kontak</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Selamat Datang di PASAR KURMA</h1>
             <p>Toko Grosir & Distributor Kurma Terpercaya di Indonesia. Melayani pemesanan ke seluruh kota sejak 2014</p>
             <div>
                 <a href="#produk" class="btn">Beli Sekarang</a>
-                <a href="#promo" class="btn btn-secondary">Produk Diskon</a>
+                <a href="harga-kurma.html" class="btn btn-secondary">Lihat Harga</a>
             </div>
         </div>
     </section>
 
-    <!-- Featured Categories -->
     <section class="section">
         <h2 class="section-title">Kategori Unggulan</h2>
         <div class="categories">
@@ -501,7 +479,6 @@
         </div>
     </section>
 
-    <!-- Products Section -->
     <section class="section" id="produk">
         <h2 class="section-title">Produk Terlaris</h2>
         <div class="products-grid">
@@ -511,8 +488,8 @@
                     <h4>Kurma Muda 500gr</h4>
                     <div class="product-price">Rp 85.000</div>
                     <div class="product-actions">
-                        <a href="#" class="btn btn-small">Info Produk</a>
-                        <a href="#" class="btn btn-small">Chat WA</a>
+                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
+                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Kurma%20Muda%20500gr" target="_blank" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -522,8 +499,8 @@
                     <h4>Kurma Ajwa Hamidah 500gr</h4>
                     <div class="product-price">Rp 100.000</div>
                     <div class="product-actions">
-                        <a href="#" class="btn btn-small">Info Produk</a>
-                        <a href="#" class="btn btn-small">Chat WA</a>
+                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
+                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Kurma%20Ajwa" target="_blank" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -531,10 +508,10 @@
                 <div class="product-image">🍇</div>
                 <div class="product-info">
                     <h4>Kurma Ruthob Libya 1kg</h4>
-                    <div class="product-price">Hubungi Kami</div>
+                    <div class="product-price">Rp 75.000</div>
                     <div class="product-actions">
-                        <a href="#" class="btn btn-small">Info Produk</a>
-                        <a href="#" class="btn btn-small">Chat WA</a>
+                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
+                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Kurma%20Ruthob" target="_blank" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -542,10 +519,10 @@
                 <div class="product-image">💎</div>
                 <div class="product-info">
                     <h4>Kurma Golden Valley 10kg</h4>
-                    <div class="product-price">Hubungi Kami</div>
+                    <div class="product-price">Rp 240.000</div>
                     <div class="product-actions">
-                        <a href="#" class="btn btn-small">Info Produk</a>
-                        <a href="#" class="btn btn-small">Chat WA</a>
+                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
+                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Golden%20Valley" target="_blank" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -553,10 +530,10 @@
                 <div class="product-image">🏆</div>
                 <div class="product-info">
                     <h4>Kurma Khalas Al Saad 10kg</h4>
-                    <div class="product-price">Hubungi Kami</div>
+                    <div class="product-price">Rp 310.000</div>
                     <div class="product-actions">
-                        <a href="#" class="btn btn-small">Info Produk</a>
-                        <a href="#" class="btn btn-small">Chat WA</a>
+                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
+                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Kurma%20Khalas" target="_blank" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -566,184 +543,30 @@
                     <h4>Herbal & Madu</h4>
                     <div class="product-price">Berbagai Pilihan</div>
                     <div class="product-actions">
-                        <a href="#" class="btn btn-small">Info Produk</a>
-                        <a href="#" class="btn btn-small">Chat WA</a>
+                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
+                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20ingin%20tanya%20produk%20herbal" target="_blank" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Price List Section -->
-    <section class="section" id="harga" style="background: #f9f9f9; padding: 4rem 2rem; margin: 0;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title">Daftar Harga Kurma Terbaru 2025</h2>
-            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow-x: auto;">
-                <p style="margin-bottom: 2rem; color: #666; line-height: 1.8;">
-                    Sejak tahun 2018 hingga 2024, harga kurma di Indonesia mengalami fluktuasi yang dipengaruhi oleh berbagai faktor. 
-                    Berikut kami sajikan daftar harga kurma dan produk timur tengah terbaru tahun 2025 di PASARKURMA:
-                </p>
-                
-                <table style="width: 100%; border-collapse: collapse; margin-top: 2rem;">
-                    <thead>
-                        <tr style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%); color: white;">
-                            <th style="padding: 1rem; text-align: left; border: 1px solid #ddd;">Nama Produk</th>
-                            <th style="padding: 1rem; text-align: right; border: 1px solid #ddd;">Harga</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background: #f9f9f9;">
-                            <td colspan="2" style="padding: 0.8rem; font-weight: bold; color: #8B4513; border: 1px solid #ddd;">🌴 KURMA</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Khalas Al Sa'ad 10 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 310.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Emirates Gold Al Sa'ad 10 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 225.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Mesir Golden Valley 10 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 240.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Tunisia Palm Fruit 500gr (isi 12 pack)</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 600.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Tunisia Madu Sahara 5 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 240.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Sukari AlQassim 3 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 160.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Sukari Premium Haramain 3 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 185.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Ruthob 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 75.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Ajwa Al Wafi 5 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 850.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Ajwa Hamidah 500gr</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 90.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Muda Barhee 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 170.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Medjool Palestina Ranuna 5 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 1.000.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Medjool Palestina Ranuna 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 220.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kurma Bam / Mazafati Barari 600gr</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 55.000</td>
-                        </tr>
-                        
-                        <tr style="background: #f9f9f9;">
-                            <td colspan="2" style="padding: 0.8rem; font-weight: bold; color: #8B4513; border: 1px solid #ddd;">🥜 KACANG</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kacang Almond Panggang Cangkang 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 160.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kacang Pistachio 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 230.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kacang Arab / Chickpeas 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 45.000</td>
-                        </tr>
-                        
-                        <tr style="background: #f9f9f9;">
-                            <td colspan="2" style="padding: 0.8rem; font-weight: bold; color: #8B4513; border: 1px solid #ddd;">🍇 BUAH KERING</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kismis Manis 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 75.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Kismis Asam Manis 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 55.000</td>
-                        </tr>
-                        
-                        <tr style="background: #f9f9f9;">
-                            <td colspan="2" style="padding: 0.8rem; font-weight: bold; color: #8B4513; border: 1px solid #ddd;">🍫 COKELAT</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Coklat Kerikil 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 95.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Coklat Turkey Truffle 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 110.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Coklat Turkey Seval 1 kg</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 95.000</td>
-                        </tr>
-                        
-                        <tr style="background: #f9f9f9;">
-                            <td colspan="2" style="padding: 0.8rem; font-weight: bold; color: #8B4513; border: 1px solid #ddd;">💧 MINUMAN & MADU</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Air Zam Zam (barcode) 5 liter</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 450.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Air Zam zam (non-barcode) 5 liter</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 350.000</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Madu Arab Al Shifa 500gr</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 160.000</td>
-                        </tr>
-                        <tr style="background: #f9f9f9;">
-                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Madu Arab Al Shifa 250gr</td>
-                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 90.000</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%); border-radius: 10px; border-left: 4px solid #D2691E;">
-                    <p style="color: #8B4513; font-weight: bold; margin-bottom: 0.5rem;">📞 Hubungi Kami untuk Pemesanan</p>
-                    <p style="color: #666;">WhatsApp: <strong style="color: #D2691E;">+62 8 222 666 8233</strong></p>
-                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">*Harga dapat berubah sewaktu-waktu. Hubungi customer service untuk info terbaru.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Instagram Feed Section -->
     <section class="section" style="background: white;">
         <h2 class="section-title">📱 Latest from Instagram</h2>
         <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
             <div class="product-card">
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">🌙</div>
                 <div class="product-info">
-                    <h4>Revive the Sunnah — Fresh RUTHOB</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">From Saudi → to YOU. 85 DAYS to Ramadhan!</p>
+                    <h4>Fresh RUTHOB for Iftar</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">From Saudi to YOU. 85 DAYS to Ramadhan!</p>
                     <a href="https://www.instagram.com/p/DRg2wXGESQm/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
             <div class="product-card">
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">🌴</div>
                 <div class="product-info">
-                    <h4>Ruthob — Fresh from the Tree</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Sunnah from the Heart. Kenapa Nabi suka ruthob?</p>
+                    <h4>Ruthob — Fresh from Tree</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Sunnah from the Heart</p>
                     <a href="https://www.instagram.com/p/DRjdWOAEbVe/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
@@ -751,31 +574,31 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">📚</div>
                 <div class="product-info">
                     <h4>5 Tingkat Kematangan Kurma</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Habbuk → Kimri → Khalal → Ruthob → Tamar</p>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Habbuk → Khalal → Ruthob → Tamar</p>
                     <a href="https://www.instagram.com/p/DRlusXMEdx0/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
             <div class="product-card">
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">🌿</div>
                 <div class="product-info">
-                    <h4>Manfaat Ruthob untuk Iftar</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Tenaga segera, mudah dicerna, kaya serat & mineral</p>
+                    <h4>Manfaat Ruthob</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Tenaga segera, kaya serat & mineral</p>
                     <a href="https://www.instagram.com/p/DRrknW1EQs-/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
             <div class="product-card">
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">✨</div>
                 <div class="product-info">
-                    <h4>Ruthob & Tamr: Dua Nikmat</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Ruthob basah vs Tamr kering. InsyaAllah pre-order soon!</p>
+                    <h4>Ruthob & Tamr</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Dua Nikmat Sunnah</p>
                     <a href="https://www.instagram.com/p/DRwVqFUEdHX/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
             <div class="product-card">
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">🎉</div>
                 <div class="product-info">
-                    <h4>Pre-Order Ruthob Dibuka!</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Alhamdulillah, mulakan persiapan Ramadhan sekarang!</p>
+                    <h4>Pre-Order Dibuka!</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Persiapan Ramadhan</p>
                     <a href="https://www.instagram.com/p/DSFE_6lEdYM/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
@@ -785,99 +608,93 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features">
         <div class="section-title">Kenapa Pilih Kami?</div>
         <div class="features-grid">
             <div class="feature-item">
                 <div class="feature-icon">🚚</div>
                 <h3>Gratis Antar</h3>
-                <p>GRATIS ONGKIR untuk jumlah dan jarak tertentu. Pesan pagi, sore sampai InsyaAllah</p>
+                <p>GRATIS ONGKIR untuk jumlah dan jarak tertentu</p>
             </div>
             <div class="feature-item">
                 <div class="feature-icon">💬</div>
                 <h3>Layanan Pelanggan</h3>
-                <p>Melayani pembelian online dengan COD maupun kunjungan langsung ke gudang</p>
+                <p>Melayani pembelian online dengan COD</p>
             </div>
             <div class="feature-item">
                 <div class="feature-icon">✅</div>
                 <h3>Kualitas Terbaik</h3>
-                <p>Penyimpanan di gudang pendingin dan garansi retur 2x24 jam</p>
+                <p>Garansi retur 2x24 jam</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="kontak">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>INFO</h3>
-                <a href="#">Profil Usaha</a>
-                <a href="#">Lowongan</a>
-                <a href="#">Cara Belanja</a>
-                <a href="#">Kontak Kami</a>
+                <a href="#about">Profil Usaha</a>
+                <a href="blog.html">Blog</a>
+                <a href="harga-kurma.html">Daftar Harga</a>
+                <a href="#kontak">Kontak</a>
             </div>
             <div class="footer-section">
                 <h3>CUSTOMER SERVICE</h3>
-                <p>Whatsapp: (+62) 8 222 666 8233</p>
-                <p>Hari: Senin – Ahad</p>
-                <p>Pukul: 08.00 – 20.00 WIB</p>
+                <p>WhatsApp: <a href="https://wa.me/6282226668233" style="color: #FFD700;">+62 8 222 666 8233</a></p>
+                <p>Senin – Ahad</p>
+                <p>08.00 – 20.00 WIB</p>
             </div>
             <div class="footer-section">
                 <h3>OFFLINE STORE</h3>
-                <p>Jl Wiratama no.83A, Kec. Tegalrejo, Yogyakarta</p>
-                <p>(Di depan Soto Pak Sholeh)</p>
+                <p>Jl Wiratama no.83A</p>
+                <p>Tegalrejo, Yogyakarta</p>
             </div>
             <div class="footer-section">
                 <h3>FIND US</h3>
-                <a href="#">📱 Instagram</a>
-                <a href="#">🗺️ Google Maps</a>
-                <a href="#">📧 Email</a>
+                <a href="https://www.instagram.com/pasar.kurma/" target="_blank">📱 Instagram</a>
+                <a href="https://wa.me/6282226668233" target="_blank">💬 WhatsApp</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 PASAR KURMA HAMIDAH | Toko Grosir & Distributor Kurma di Jogja</p>
+            <p>&copy; 2024 PASAR KURMA | Toko Grosir Kurma di Jogja</p>
         </div>
     </footer>
 
+    <div id="cookieConsent" style="position:fixed;bottom:20px;right:20px;max-width:400px;background:white;padding:1.5rem;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,0.3);z-index:9999;display:none;">
+        <h4 style="margin:0 0 0.5rem 0;color:#8B4513;">🍪 Pemberitahuan Cookie</h4>
+        <p style="font-size:0.9rem;margin:0 0 1rem 0;color:#666;line-height:1.6;">Kami menggunakan cookies dan Google Analytics untuk meningkatkan pengalaman Anda.</p>
+        <div style="display:flex;gap:0.5rem;">
+            <button onclick="acceptCookies()" style="flex:1;background:#D2691E;color:white;border:none;padding:0.8rem;border-radius:5px;cursor:pointer;font-weight:bold;">Terima</button>
+            <button onclick="declineCookies()" style="flex:1;background:transparent;color:#666;border:2px solid #ddd;padding:0.8rem;border-radius:5px;cursor:pointer;">Tolak</button>
+        </div>
+    </div>
+
     <script>
-        // Smooth scroll
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookieConsent').style.display = 'block';
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').style.display = 'none';
+            gtag('config', 'G-RY33XK99YQ', {'anonymize_ip': true});
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({behavior: 'smooth', block: 'start'});
                 }
             });
         });
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.product-card, .category-card, .feature-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Mobile menu toggle
         const mobileToggle = document.querySelector('.mobile-toggle');
         const navMenu = document.querySelector('.nav-menu');
         
@@ -889,69 +706,4 @@
             navMenu.style.left = '0';
             navMenu.style.right = '0';
             navMenu.style.background = '#8B4513';
-            navMenu.style.padding = '1rem';
-        });
-    </script>
-<!-- Cookie Consent Banner -->
-    <div id="cookieConsent" style="
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        max-width: 400px;
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        z-index: 9999;
-        display: none;
-    ">
-        <h4 style="margin: 0 0 0.5rem 0; color: #8B4513;">🍪 Pemberitahuan Cookie</h4>
-        <p style="font-size: 0.9rem; margin: 0 0 1rem 0; color: #666; line-height: 1.6;">
-            Kami menggunakan cookies dan Google Analytics untuk meningkatkan pengalaman Anda. 
-            Data anonim akan dikumpulkan untuk analisis.
-        </p>
-        <div style="display: flex; gap: 0.5rem;">
-            <button onclick="acceptCookies()" style="
-                flex: 1;
-                background: #D2691E;
-                color: white;
-                border: none;
-                padding: 0.8rem;
-                border-radius: 5px;
-                cursor: pointer;
-                font-weight: bold;
-            ">Terima</button>
-            <button onclick="declineCookies()" style="
-                flex: 1;
-                background: transparent;
-                color: #666;
-                border: 2px solid #ddd;
-                padding: 0.8rem;
-                border-radius: 5px;
-                cursor: pointer;
-            ">Tolak</button>
-        </div>
-    </div>
-
-    <script>
-        // Show banner if user hasn't decided yet
-        if (!localStorage.getItem('cookieConsent')) {
-            document.getElementById('cookieConsent').style.display = 'block';
-        }
-
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.getElementById('cookieConsent').style.display = 'none';
-            // Google Analytics akan dimuat di sini nanti
-            console.log('Cookies accepted - GA will load');
-        }
-
-        function declineCookies() {
-            localStorage.setItem('cookieConsent', 'declined');
-            document.getElementById('cookieConsent').style.display = 'none';
-            console.log('Cookies declined - GA will not load');
-        }
-    </script>
-
-</body>
-</html>
+            navMenu

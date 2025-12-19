@@ -1,25 +1,9 @@
-<!DOCTYPE html>
+Put your HTML text here<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PASARKURMA | Toko Grosir & Distributor Kurma di Jogja</title>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RY33XK99YQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      // Check if user accepted cookies
-      if (localStorage.getItem('cookieConsent') === 'accepted') {
-          gtag('config', 'G-RY33XK99YQ', {
-              'anonymize_ip': true
-          });
-      }
-    </script>
-    
+    <title>ATTAWASOL INSANIY | Toko Grosir & Distributor Kurma di Singapura</title>
     <style>
         * {
             margin: 0;
@@ -34,6 +18,7 @@
             overflow-x: hidden;
         }
 
+        /* Header & Navigation */
         .header {
             background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
             position: sticky;
@@ -45,7 +30,7 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -53,15 +38,29 @@
 
         .logo {
             color: white;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: white;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-menu a {
@@ -98,39 +97,133 @@
             cursor: pointer;
         }
 
+        /* --- HERO SECTION: FIXED ALIGNMENT --- */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f4e5d3" width="1200" height="600"/><circle cx="200" cy="150" r="80" fill="%23d2691e" opacity="0.1"/><circle cx="900" cy="400" r="120" fill="%238b4513" opacity="0.1"/></svg>');
-            background-size: cover;
-            background-position: center;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
             position: relative;
+            height: 90vh;
             overflow: hidden;
+            background: linear-gradient(135deg, #3e1e08 0%, #8B4513 100%); 
         }
 
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.8s ease-in-out;
+            z-index: 1;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 2;
+        }
+
+        /* Bagian Teks (Kiri) */
         .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease;
+            flex: 1;
+            max-width: 600px;
+            color: white;
+            z-index: 10;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+            opacity: 0;
+        }
+
+        .hero-slide.active .hero-content {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .hero h2 {
+            font-size: 1.2rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            color: #f0f0f0;
+            line-height: 1.6;
+            max-width: 90%;
         }
 
+        /* Bagian Gambar (Kanan) - SUDAH DI-FIX AGAR SEJAJAR */
+        .hero-image-container {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Memastikan gambar selalu di tengah container */
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+            opacity: 0;
+        }
+
+        .hero-slide.active .hero-image-container {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .hero-image-container img {
+            /* KUNCI UKURAN: Ini rahasia agar gambar sejajar */
+            height: 450px; 
+            width: 450px; 
+            
+            object-fit: contain; /* Gambar utuh, tidak terpotong */
+            object-position: center center; /* Posisi pasti di tengah */
+            
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3)); /* Bayangan */
+            border-radius: 20px;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 20;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .dot.active {
+            background: #FFD700;
+            border-color: #FFD700;
+            transform: scale(1.3);
+        }
+
+        /* Button Styles */
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
@@ -162,6 +255,7 @@
             color: #D2691E;
         }
 
+        /* General Section Styles */
         .section {
             padding: 4rem 2rem;
             max-width: 1200px;
@@ -188,9 +282,10 @@
             background: linear-gradient(90deg, transparent, #D2691E, transparent);
         }
 
+        /* Categories Grid */
         .categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
@@ -202,6 +297,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             cursor: pointer;
+            height: 100%;
         }
 
         .category-card:hover {
@@ -211,28 +307,30 @@
 
         .category-image {
             height: 250px;
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid #eee;
         }
 
-        .category-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            animation: pulse 3s ease-in-out infinite;
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            padding: 10px;
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.05);
         }
 
         .category-content {
             padding: 1.5rem;
+            text-align: center;
         }
 
         .category-content h3 {
@@ -245,6 +343,7 @@
             font-size: 0.9rem;
         }
 
+        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -257,6 +356,7 @@
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease;
         }
 
         .product-card:hover {
@@ -301,8 +401,18 @@
             font-size: 0.85rem;
             text-align: center;
             border-radius: 5px;
+            background: #eee;
+            text-decoration: none;
+            color: #333;
+            transition: 0.3s;
+        }
+        
+        .btn-small:hover {
+            background: #D2691E;
+            color: white;
         }
 
+        /* Features Section */
         .features {
             background: linear-gradient(135deg, #f4e5d3 0%, #fff 100%);
             padding: 4rem 2rem;
@@ -345,6 +455,7 @@
             font-size: 0.9rem;
         }
 
+        /* Footer */
         .footer {
             background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
             color: white;
@@ -365,6 +476,11 @@
             color: #FFD700;
         }
 
+        .footer-section p {
+            margin-bottom: 0.5rem;
+            color: #f0f0f0;
+        }
+
         .footer-section a {
             color: white;
             text-decoration: none;
@@ -381,44 +497,63 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
         }
 
+        /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(-25%, -25%) scale(1.1);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
+        /* Responsive Mobile */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #8B4513;
+                padding: 1rem;
+                gap: 1rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             }
-            .mobile-toggle {
-                display: block;
+
+            .nav-menu.active { display: flex; }
+            .mobile-toggle { display: block; }
+
+            /* Hero Mobile Adjustments */
+            .hero { height: auto; min-height: 90vh; padding-top: 80px; }
+            .hero-slide { 
+                flex-direction: column-reverse;
+                justify-content: center;
+                text-align: center;
+                padding: 2rem;
             }
-            .hero h1 {
-                font-size: 2rem;
+            .hero-content { 
+                text-align: center; 
+                margin-top: 1rem;
+                transform: translateY(20px);
             }
-            .hero p {
-                font-size: 1rem;
+            .hero h1 { font-size: 2.2rem; }
+            .hero-image-container { 
+                transform: translateY(-20px); 
+                height: auto;
             }
-            .section-title {
-                font-size: 1.8rem;
+            .hero-image-container img { 
+                height: 280px; /* Ukuran lebih kecil untuk HP */
+                width: 280px;
             }
+            .hero p { margin: 0 auto 1.5rem auto; }
+
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 1rem;
@@ -429,12 +564,16 @@
 <body>
     <header class="header">
         <nav class="nav-container">
-            <a href="index.html" class="logo">🌴 PASARKURMA</a>
-            <div class="mobile-toggle">☰</div>
-            <ul class="nav-menu">
+            <a href="#" class="logo">
+                <img src="attawasol_logo_page-0001.jpg" alt="Logo Attawasol Insaniy" class="logo-img">
+                ATTAWASOL INSANIY
+            </a>
+            
+            <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#produk">Produk</a></li>
-                <li><a href="harga-kurma.html">Daftar Harga</a></li>
-                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#harga">Daftar Harga</a></li>
+                <li><a href="#peluang">Peluang Usaha</a></li>
                 <li><a href="#about">Tentang Kami</a></li>
                 <li><a href="#kontak">Kontak</a></li>
             </ul>
@@ -442,38 +581,140 @@
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Selamat Datang di PASAR KURMA</h1>
-            <p>Toko Grosir & Distributor Kurma Terpercaya di Indonesia. Melayani pemesanan ke seluruh kota sejak 2014</p>
-            <div>
-                <a href="#produk" class="btn">Beli Sekarang</a>
-                <a href="harga-kurma.html" class="btn btn-secondary">Lihat Harga</a>
+        <div class="hero-slide active">
+            <div class="hero-content">
+                <h2>Ahlan Wa Sahlan</h2>
+                <h1>ATTAWASOL INSANIY SINGAPURA</h1>
+                <p>Distributor Ruthob Premium dengan standar Cold Chain terbaik. Menghadirkan kurma segar dari kebun langsung ke meja makan Anda.</p>
+                <div>
+                    <a href="#produk" class="btn">Belanja Sekarang</a>
+                </div>
             </div>
+            <div class="hero-image-container">
+                <img src="attawasol logo_page-0001.jpg" alt="Attawasol Insaniy">
+            </div>
+        </div>
+
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h2>Best Seller</h2>
+                <h1>Ruthob Sukari</h1>
+                <p>Si Manis yang Creamy. Tekstur dagingnya sangat lembut, lumer di mulut dengan rasa manis alami yang memanjakan lidah.</p>
+                <div><a href="#produk" class="btn">Pesan Sekarang</a></div>
+            </div>
+            <div class="hero-image-container">
+                <img src="Sukariy.jpg" alt="Ruthob Sukari">
+            </div>
+        </div>
+
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h2>Varian Eksklusif</h2>
+                <h1>Nabta Sultan</h1>
+                <p>Warna kemerahan yang menggoda dengan daging tebal. Pilihan tepat bagi pecinta kurma dengan tekstur legit.</p>
+                <div><a href="#produk" class="btn">Pesan Sekarang</a></div>
+            </div>
+            <div class="hero-image-container">
+                <img src="Nabta Sultan.jpg" alt="Nabta Sultan">
+            </div>
+        </div>
+
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h2>Kurma Nabi</h2>
+                <h1>Ajwa Premium</h1>
+                <p>Hitam pekat penuh berkah. Ruthob Ajwa memiliki kandungan serat tinggi dan khasiat kesehatan yang luar biasa.</p>
+                <div><a href="#produk" class="btn">Pesan Sekarang</a></div>
+            </div>
+            <div class="hero-image-container">
+                <img src="Ajwa Premium.jpg" alt="Ajwa Premium">
+            </div>
+        </div>
+
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h2>Sensasi Keriuk</h2>
+                <h1>Ruthob Barhi</h1>
+                <p>Unik! Satu-satunya kurma yang enak dimakan saat fase Khalal (mengkal). Renyah seperti apel, manis seperti tebu.</p>
+                <div><a href="#produk" class="btn">Pesan Sekarang</a></div>
+            </div>
+            <div class="hero-image-container">
+                <img src="Barhiy.jpg" alt="Ruthob Barhi">
+            </div>
+        </div>
+
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h2>King of Dates</h2>
+                <h1>Ruthob Medjool</h1>
+                <p>Ukuran JUMBO. Puas dalam sekali gigitan. Daging tebal, lembut, dan aroma karamel yang khas.</p>
+                <div><a href="#produk" class="btn">Pesan Sekarang</a></div>
+            </div>
+            <div class="hero-image-container">
+                <img src="Madjool.png" alt="Medjool">
+            </div>
+        </div>
+
+        <div class="slider-dots">
+            <div class="dot active" onclick="goToSlide(0)"></div>
+            <div class="dot" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+            <div class="dot" onclick="goToSlide(3)"></div>
+            <div class="dot" onclick="goToSlide(4)"></div>
+            <div class="dot" onclick="goToSlide(5)"></div>
         </div>
     </section>
 
     <section class="section">
-        <h2 class="section-title">Kategori Unggulan</h2>
+        <h2 class="section-title">Ruthob Kami</h2>
         <div class="categories">
             <div class="category-card">
-                <div class="category-image">🌴</div>
+                <div class="category-image">
+                    <img src="Sukariy.jpg" alt="Ruthob Sukariy">
+                </div>
                 <div class="category-content">
-                    <h3>Kurma Sukari</h3>
-                    <p>Kurma sukari asli Al Qassim, Arab Saudi dengan rasa manis beraroma susu dan tekstur lembut</p>
+                    <h3>Ruthob Sukari</h3>
+                    <p>Tekstur lembut yang lumer di mulut dengan rasa manis creamy yang khas.</p>
                 </div>
             </div>
+
             <div class="category-card">
-                <div class="category-image">✨</div>
+                <div class="category-image">
+                    <img src="Nabta Sultan.jpg" alt="Ruthob Nabta Sultan">
+                </div>
                 <div class="category-content">
-                    <h3>Kurma Golden Valley</h3>
-                    <p>Kurma Mesir Golden Valley merek primadona dengan daging tebal dan manis</p>
+                    <h3>Ruthob Nabta Sultan</h3>
+                    <p>Varian istimewa dengan warna kemerahan, daging tebal, dan rasa manis legit.</p>
                 </div>
             </div>
+
             <div class="category-card">
-                <div class="category-image">👑</div>
+                <div class="category-image">
+                    <img src="Ajwa Premium.jpg" alt="Ruthob Ajwa Premium">
+                </div>
                 <div class="category-content">
-                    <h3>Kurma Khalas Al Saad</h3>
-                    <p>Produk unggulan UEA/Dubai untuk kebutuhan bulan Ramadhan</p>
+                    <h3>Ruthob Ajwa Premium</h3>
+                    <p>Kurma Nabi kualitas terbaik. Warna hitam pekat, kaya serat, dan penuh berkah.</p>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="Barhiy.jpg" alt="Ruthob Barhiy">
+                </div>
+                <div class="category-content">
+                    <h3>Ruthob Barhi</h3>
+                    <p>Sensasi unik! Tekstur renyah seperti buah apel dengan rasa manis segar saat fase khalal.</p>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="Madjool.png" alt="Ruthob Medjool">
+                </div>
+                <div class="category-content">
+                    <h3>Ruthob Medjool</h3>
+                    <p>Sang Raja Kurma. Ukuran jumbo, daging sangat tebal, dan tekstur lembut berserat.</p>
                 </div>
             </div>
         </div>
@@ -488,8 +729,8 @@
                     <h4>Kurma Muda 500gr</h4>
                     <div class="product-price">Rp 85.000</div>
                     <div class="product-actions">
-                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
-                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Kurma%20Muda%20500gr" target="_blank" class="btn btn-small">Chat WA</a>
+                        <a href="#" class="btn btn-small">Info Produk</a>
+                        <a href="#" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -499,8 +740,8 @@
                     <h4>Kurma Ajwa Hamidah 500gr</h4>
                     <div class="product-price">Rp 100.000</div>
                     <div class="product-actions">
-                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
-                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Kurma%20Ajwa" target="_blank" class="btn btn-small">Chat WA</a>
+                        <a href="#" class="btn btn-small">Info Produk</a>
+                        <a href="#" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -508,10 +749,10 @@
                 <div class="product-image">🍇</div>
                 <div class="product-info">
                     <h4>Kurma Ruthob Libya 1kg</h4>
-                    <div class="product-price">Rp 75.000</div>
+                    <div class="product-price">Hubungi Kami</div>
                     <div class="product-actions">
-                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
-                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Kurma%20Ruthob" target="_blank" class="btn btn-small">Chat WA</a>
+                        <a href="#" class="btn btn-small">Info Produk</a>
+                        <a href="#" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -519,10 +760,10 @@
                 <div class="product-image">💎</div>
                 <div class="product-info">
                     <h4>Kurma Golden Valley 10kg</h4>
-                    <div class="product-price">Rp 240.000</div>
+                    <div class="product-price">Hubungi Kami</div>
                     <div class="product-actions">
-                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
-                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Golden%20Valley" target="_blank" class="btn btn-small">Chat WA</a>
+                        <a href="#" class="btn btn-small">Info Produk</a>
+                        <a href="#" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -530,10 +771,10 @@
                 <div class="product-image">🏆</div>
                 <div class="product-info">
                     <h4>Kurma Khalas Al Saad 10kg</h4>
-                    <div class="product-price">Rp 310.000</div>
+                    <div class="product-price">Hubungi Kami</div>
                     <div class="product-actions">
-                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
-                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20tertarik%20dengan%20Kurma%20Khalas" target="_blank" class="btn btn-small">Chat WA</a>
+                        <a href="#" class="btn btn-small">Info Produk</a>
+                        <a href="#" class="btn btn-small">Chat WA</a>
                     </div>
                 </div>
             </div>
@@ -543,9 +784,61 @@
                     <h4>Herbal & Madu</h4>
                     <div class="product-price">Berbagai Pilihan</div>
                     <div class="product-actions">
-                        <a href="harga-kurma.html" class="btn btn-small">Info</a>
-                        <a href="https://wa.me/6282226668233?text=Halo,%20saya%20ingin%20tanya%20produk%20herbal" target="_blank" class="btn btn-small">Chat WA</a>
+                        <a href="#" class="btn btn-small">Info Produk</a>
+                        <a href="#" class="btn btn-small">Chat WA</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="harga" style="background: #f9f9f9; padding: 4rem 2rem; margin: 0;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Daftar Harga Ruthob Terbaru 2025</h2>
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow-x: auto;">
+                <p style="margin-bottom: 2rem; color: #666; line-height: 1.8;">
+                    Kami menyediakan 2 paket Ruthob pilihan untuk kebutuhan keluarga dan ibadah Anda. 
+                    Berikut daftar harga paket Ruthob terbaru 2025 di ATTAWASOL INSANIY :
+                </p>
+                
+                <table style="width: 100%; border-collapse: collapse; margin-top: 2rem;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%); color: white;">
+                            <th style="padding: 1rem; text-align: left; border: 1px solid #ddd;">Paket Kurma</th>
+                            <th style="padding: 1rem; text-align: right; border: 1px solid #ddd;">Harga (IDR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #f9f9f9;">
+                            <td colspan="2" style="padding: 0.8rem; font-weight: bold; color: #8B4513; border: 1px solid #ddd;">🌴 PAKET BARAKAH KELUARGA</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Paket Barakah Keluarga - 500gr</td>
+                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 300.000 (Estimasi)</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Paket Barakah Keluarga - 1kg</td>
+                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 550.000 (Estimasi)</td>
+                        </tr>
+                        
+                        <tr style="background: #f9f9f9;">
+                            <td colspan="2" style="padding: 0.8rem; font-weight: bold; color: #8B4513; border: 1px solid #ddd;">✨ PAKET IHYA' SUNNAH</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Paket Ihya' Sunnah - 3kg</td>
+                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 1.450.000 (Estimasi)</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 0.8rem; border: 1px solid #ddd;">Paket Ihya' Sunnah - per kg tambahan</td>
+                            <td style="padding: 0.8rem; text-align: right; color: #D2691E; font-weight: bold; border: 1px solid #ddd;">Rp 365.000 / kg</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%); border-radius: 10px; border-left: 4px solid #D2691E;">
+                    <p style="color: #8B4513; font-weight: bold; margin-bottom: 0.5rem;">📞 Hubungi Kami untuk Tempahan</p>
+                    <p style="color: #666;">WhatsApp: <strong style="color: #D2691E;">8874 8848</strong></p>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">*Harga dapat berubah sewaktu-waktu. Hubungi customer service untuk info terbaru.</p>
                 </div>
             </div>
         </div>
@@ -557,16 +850,16 @@
             <div class="product-card">
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">🌙</div>
                 <div class="product-info">
-                    <h4>Fresh RUTHOB for Iftar</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">From Saudi to YOU. 85 DAYS to Ramadhan!</p>
+                    <h4>Revive the Sunnah – Fresh RUTHOB</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">From Saudi → to YOU. 85 DAYS to Ramadhan!</p>
                     <a href="https://www.instagram.com/p/DRg2wXGESQm/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
             <div class="product-card">
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">🌴</div>
                 <div class="product-info">
-                    <h4>Ruthob — Fresh from Tree</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Sunnah from the Heart</p>
+                    <h4>Ruthob – Fresh from the Tree</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Sunnah from the Heart. Kenapa Nabi suka ruthob?</p>
                     <a href="https://www.instagram.com/p/DRjdWOAEbVe/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
@@ -574,32 +867,8 @@
                 <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">📚</div>
                 <div class="product-info">
                     <h4>5 Tingkat Kematangan Kurma</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Habbuk → Khalal → Ruthob → Tamar</p>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Habbuk → Kimri → Khalal → Ruthob → Tamar</p>
                     <a href="https://www.instagram.com/p/DRlusXMEdx0/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">🌿</div>
-                <div class="product-info">
-                    <h4>Manfaat Ruthob</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Tenaga segera, kaya serat & mineral</p>
-                    <a href="https://www.instagram.com/p/DRrknW1EQs-/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">✨</div>
-                <div class="product-info">
-                    <h4>Ruthob & Tamr</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Dua Nikmat Sunnah</p>
-                    <a href="https://www.instagram.com/p/DRwVqFUEdHX/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">🎉</div>
-                <div class="product-info">
-                    <h4>Pre-Order Dibuka!</h4>
-                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Persiapan Ramadhan</p>
-                    <a href="https://www.instagram.com/p/DSFE_6lEdYM/" target="_blank" class="btn btn-small" style="width: 100%;">Lihat di Instagram</a>
                 </div>
             </div>
         </div>
@@ -614,96 +883,95 @@
             <div class="feature-item">
                 <div class="feature-icon">🚚</div>
                 <h3>Gratis Antar</h3>
-                <p>GRATIS ONGKIR untuk jumlah dan jarak tertentu</p>
+                <p>Penghantaran Percuma untuk jumlah dan jarak tertentu. Pesan pagi, sore sampai InsyaAllah</p>
             </div>
             <div class="feature-item">
                 <div class="feature-icon">💬</div>
                 <h3>Layanan Pelanggan</h3>
-                <p>Melayani pembelian online dengan COD</p>
+                <p>Melayani pembelian online dengan COD maupun kunjungan langsung ke gudang</p>
             </div>
             <div class="feature-item">
                 <div class="feature-icon">✅</div>
                 <h3>Kualitas Terbaik</h3>
-                <p>Garansi retur 2x24 jam</p>
+                <p>Penyimpanan Cold Chain Premium di gudang pendingin dan garansi retur 2x24 jam</p>
             </div>
         </div>
     </section>
 
-    <footer class="footer" id="kontak">
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>INFO</h3>
-                <a href="#about">Profil Usaha</a>
-                <a href="blog.html">Blog</a>
-                <a href="harga-kurma.html">Daftar Harga</a>
-                <a href="#kontak">Kontak</a>
+                <a href="#">Profil Usaha</a>
+                <a href="#">Lowongan</a>
+                <a href="#">Cara Tempah</a>
+                <a href="#">Kontak Kami</a>
             </div>
             <div class="footer-section">
                 <h3>CUSTOMER SERVICE</h3>
-                <p>WhatsApp: <a href="https://wa.me/6282226668233" style="color: #FFD700;">+62 8 222 666 8233</a></p>
-                <p>Senin – Ahad</p>
-                <p>08.00 – 20.00 WIB</p>
+                <p>Whatsapp: 8874 8848</p>
+                <p>Hari: Isnin – Ahad</p>
+                <p>Pukul: 9am – 5pm</p>
             </div>
             <div class="footer-section">
                 <h3>OFFLINE STORE</h3>
-                <p>Jl Wiratama no.83A</p>
-                <p>Tegalrejo, Yogyakarta</p>
+                <p>277, Upper East Coast Road S(466423)</p>
             </div>
             <div class="footer-section">
                 <h3>FIND US</h3>
-                <a href="https://www.instagram.com/pasar.kurma/" target="_blank">📱 Instagram</a>
-                <a href="https://wa.me/6282226668233" target="_blank">💬 WhatsApp</a>
+                <a href="#">📱 Instagram</a>
+                <a href="#">🗺️ Google Maps</a>
+                <a href="#">📧 Email</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 PASAR KURMA | Toko Grosir Kurma di Jogja</p>
+            <p>&copy; 2024 PASAR KURMA HAMIDAH | Toko Grosir & Distributor Kurma di Jogja</p>
         </div>
     </footer>
 
-    <div id="cookieConsent" style="position:fixed;bottom:20px;right:20px;max-width:400px;background:white;padding:1.5rem;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,0.3);z-index:9999;display:none;">
-        <h4 style="margin:0 0 0.5rem 0;color:#8B4513;">🍪 Pemberitahuan Cookie</h4>
-        <p style="font-size:0.9rem;margin:0 0 1rem 0;color:#666;line-height:1.6;">Kami menggunakan cookies dan Google Analytics untuk meningkatkan pengalaman Anda.</p>
-        <div style="display:flex;gap:0.5rem;">
-            <button onclick="acceptCookies()" style="flex:1;background:#D2691E;color:white;border:none;padding:0.8rem;border-radius:5px;cursor:pointer;font-weight:bold;">Terima</button>
-            <button onclick="declineCookies()" style="flex:1;background:transparent;color:#666;border:2px solid #ddd;padding:0.8rem;border-radius:5px;cursor:pointer;">Tolak</button>
-        </div>
-    </div>
-
     <script>
-        if (!localStorage.getItem('cookieConsent')) {
-            document.getElementById('cookieConsent').style.display = 'block';
+        function toggleMenu() {
+            const nav = document.getElementById('navMenu');
+            nav.classList.toggle('active');
         }
 
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.getElementById('cookieConsent').style.display = 'none';
-            gtag('config', 'G-RY33XK99YQ', {'anonymize_ip': true});
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function showSlide(index) {
+            if (slides.length === 0) return;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
         }
 
-        function declineCookies() {
-            localStorage.setItem('cookieConsent', 'declined');
-            document.getElementById('cookieConsent').style.display = 'none';
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % totalSlides;
+            showSlide(nextIndex);
         }
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({behavior: 'smooth', block: 'start'});
-                }
-            });
+        function goToSlide(index) {
+            showSlide(index);
+            resetTimer();
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000); 
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if(document.querySelectorAll('.hero-slide').length > 0) {
+                resetTimer();
+            }
         });
-
-        const mobileToggle = document.querySelector('.mobile-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        mobileToggle.addEventListener('click', () => {
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-            navMenu.style.flexDirection = 'column';
-            navMenu.style.position = 'absolute';
-            navMenu.style.top = '100%';
-            navMenu.style.left = '0';
-            navMenu.style.right = '0';
-            navMenu.style.background = '#8B4513';
-            navMenu
+    </script>
+</body>
+</html>
